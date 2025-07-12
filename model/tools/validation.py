@@ -36,8 +36,6 @@ def role_validation(role):
         raise ValueError("Invalid role !!!")
 
 
-
-
 def origin_validation(origin):
     if not  re.match(r"^[a-zA-Z\s]{3,30}$", origin):
         raise ValueError("Invalid origin !!!")
