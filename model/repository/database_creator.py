@@ -22,14 +22,15 @@ def create_database():
                )
                """)
 
+
     cursor.execute("""
-                   CREATE TABLE IF NOT EXISTS Patient
-                   (
-                       code         integer primary key,
-                       name         text not null,
-                       family       text not null,
-                       phone_number text
-                   )
+               CREATE TABLE IF NOT EXISTS Patient,
+                (
+                    code         integer primary key,
+                    name         text not null,
+                    family       text not null,
+                    phone_number text
+                )
                    """)
 
     connection.commit()
