@@ -2,7 +2,7 @@ import sqlite3
 
 def create_database():
     # اتصال
-    connection = sqlite3.connect("hospital_db.sqlite")
+    connection = sqlite3.connect("ticket_db.sqlite")
 
     # ساخت جدول
     # عملیات ذخیره، ویرایش، حذف و انواع جستجو و گزارش
