@@ -2,9 +2,7 @@ import sqlite3
 
 def create_database():
 
-
     connection = sqlite3.connect("ticket.db.sqlite")
-
 
 
     cursor = connection.cursor()
@@ -35,7 +33,7 @@ def create_database():
 
     connection.commit()
 
-    # قطع اتصال
+
     cursor.close()
     connection.close()
 
