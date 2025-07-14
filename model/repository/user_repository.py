@@ -16,10 +16,10 @@ class UserRepository:
     def save(self, user):
         self.connect()
         self.cursor.execute(
-            """insert into users,
-                ( name, family, username, password, role, locked)
-            values
-                (?,?,?,?,?,?)""",
+        """insert into users,
+           ( name, family, username, password, role, locked)
+           values
+           (?,?,?,?,?,?)""",
             [user.name, user.family, user.username, user.password, user.role, user.locked])
         self.disconnect(commit=True)
 
