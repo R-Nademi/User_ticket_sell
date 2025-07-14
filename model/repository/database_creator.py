@@ -8,8 +8,8 @@ def create_database():
     # عملیات ذخیره، ویرایش، حذف و انواع جستجو و گزارش
     cursor = connection.cursor()
 
-    cursor.execute("""
-                   CREATE TABLE IF NOT EXISTS ticket,
+    cursor.execute(""",
+                   CREATE TABLE IF NOT EXISTS ticket
                    (
                        "code"     integer primary key AUTOINCREMENT ,
                        "name"     text not null,
@@ -21,8 +21,8 @@ def create_database():
                    )
                    """)
 
-    cursor.execute("""
-                   CREATE TABLE IF NOT EXISTS Patient,
+    cursor.execute(""",
+                   CREATE TABLE IF NOT EXISTS Patient
                    (
                        "code"         integer primary key,
                        "name"         text not null,
