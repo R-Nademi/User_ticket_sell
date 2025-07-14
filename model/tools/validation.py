@@ -77,3 +77,9 @@ def seat_number_validation(seat_number):
 def price_validation(price):
     if not  re.match(r"^[a-zA-Z\s]{3,30}$", price):
         raise ValueError("Invalid price !!!")
+
+
+
+def phone_number(phone_number):
+    if not re.match(r"^\+?1?\d{9,15}$", phone_number):
+        raise ValueError("Invalid phone_number !!!")
