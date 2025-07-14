@@ -10,8 +10,8 @@ class UserRepository:
     def disconnect(self, commit=False):
         if commit:
             self.connection.commit()
-        self.cursor.close()
-        self.connection.close()
+            self.cursor.close()
+            self.connection.close()
 
     def save(self, user):
         self.connect()
