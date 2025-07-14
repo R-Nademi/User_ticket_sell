@@ -1,6 +1,6 @@
 from flask import Flask, render_template,request
 
-from controller.user_controller import UserController
+from controller.ticket_controller import UserController
 
 app = Flask(__name__, template_folder="view")
 

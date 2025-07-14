@@ -1,44 +1,65 @@
-from model.entity.ticket import Ticket
+from model.entity.user import User
+from model.repository.user_repository import UserRepository
 
-
-ticket_list = []
 
 class TicketController:
-    def save(self,code,name,family,birth_date,origin,destination,start_date_time,end_date_time,ticket_type,seat_number,price):
+    def save(self, name, family, username, password, role, locked):
         try:
-            ticket = Ticket(code,name,family,birth_date,origin,destination,start_date_time,end_date_time,ticket_type,seat_number, price)
-            ticket_list.append(ticket)
-            return True,f"ticket save successfully{ticket}"
+            user = User(None, name, family, username, password, role, locked)
+            user_repo = UserRepository()
+            user_repo.save(user)
+            return True, f"User saved {user}"
         except Exception as e:
-            return False,f"save error{e}"
+            return False,f"Error saving user {e}"
 
-
-    def edit(self,code,name, family,birth_date,origin,destination,start_date_time,end_date_time,ticket_type,price):
+    def edit(self, code, name, family, username, password, role, locked):
         try:
-            ticket = Ticket(code,name,family,birth_date,origin,destination,start_date_time,end_date_time,ticket_type,price)
-            return True,f"ticket edit successfully{ticket}"
+            user = User(code, name, family, username, password, role, locked)
+            user_repo = UserRepository()
+            user_repo.edit(user)
+            return True, f"User edited {user}"
         except Exception as e:
-            return False,f"edit error{e}"
+            return False,f"Error editing user {e}"
 
-
-
-    def remove(self,code):
+    def delete(self, code):
         try:
-            return True, f"ticket removed successfully - {code}"
+            user_repo = UserRepository()
+            user_repo.delete(code)
+            return True, f"User removed {code}"
         except Exception as e:
-            return False, f"ticket removed failed\n{e}"
-
-
+            return False,f"Error removing user {e}"
 
     def find_all(self):
         try:
-            return True, f"ticket find all successfully - {ticket_list}"
+            user_repo = UserRepository()
+            return True, user_repo.find_all()
         except Exception as e:
-            return False,f"ticket find all failed\n{e}"
+            return False, f"Error find all users {e}"
 
-
-    def sell(self):
+    def find_by_code(self, code):
         try:
-            return True, f"ticket sell successfully - {ticket_list}"
+            user_repo = UserRepository()
+            return True, user_repo.find_by_code(code)
         except Exception as e:
-            return False,f"ticket sell failed\n{e}"
+            return False, f"Error find user code : {code} Error :{e}"
+
+    def find_by_name_family(self, name, family):
+        try:
+            user_repo = UserRepository()
+            return True, user_repo.find_by_name_family(name, family)
+        except Exception as e:
+            return False, f"Error find users name : {name} - family {family} -- Error {e}"
+
+    def find_by_username(self, username):
+        try:
+            user_repo = UserRepository()
+            return True, user_repo.find_by_username(username)
+        except Exception as e:
+            return False, f"Error find users username : {username}  -- Error {e}"
+
+    def find_by_username_and_password(self, username, password):
+        try:
+            user_repo = UserRepository()
+            return True, user_repo.find_by_username_and_password(username, password)
+        except Exception as e:
+            return False, f"Error find users username:password : {username}:{password}  -- Error {e}"

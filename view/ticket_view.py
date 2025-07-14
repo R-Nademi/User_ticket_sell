@@ -1,16 +1,16 @@
-from controller import user_controller
-from controller.user_controller import UserController
+from controller import ticket_controller
+from controller.ticket_controller import UserController
 from tkinter import *
 from tkinter import ttk as ttk
 from tkinter import messagebox as msg
 
-from model.entity.user import User
+from model.entity.ticket import Ticket
 
 
-class UserView:
+class TicketView:
     def __init__(self):
         self.win = Tk()
-        self.win.title("User View")
+        self.win.title("Ticket View")
         self.win.geometry("1000x600")
 
         #  code
@@ -169,7 +169,7 @@ class UserView:
         self.show_data_on_table(status, user_list)
 
     def select_user(self, event):
-        user = User(* self.table.item(self.table.focus())["values"])
+        user = Ticket(* self.table.item(self.table.focus())["values"])
         self.code.set(user.code)
         self.name.set(user.name)
         self.family.set(user.family)

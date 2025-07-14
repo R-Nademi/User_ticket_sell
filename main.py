@@ -1,9 +1,10 @@
 import os
 
+from model.entity.ticket import Ticket
 from model.repository.database_creator import create_database
-from view.user_view import UserView
+from view.ticket_view import TicketView
 
 
 create_database()
 
-ui = UserView()
+ui = TicketView()
