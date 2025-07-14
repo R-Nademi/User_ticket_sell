@@ -2,7 +2,7 @@ import sqlite3
 
 def create_database():
 
-    connection = sqlite3.connect("ticket.db.sqlite")
+    connection = sqlite3.connect("sell.db.sqlite")
 
 
     cursor = connection.cursor()
