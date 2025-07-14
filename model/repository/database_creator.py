@@ -2,14 +2,14 @@ import sqlite3
 
 def create_database():
     # اتصال
-    connection = sqlite3.connect("tickets.db.sqlite")
+    connection = sqlite3.connect("ticket.db.sqlite")
 
     # ساخت جدول
     # عملیات ذخیره، ویرایش، حذف و انواع جستجو و گزارش
     cursor = connection.cursor()
 
     cursor.execute("""
-                   CREATE TABLE IF NOT EXISTS USERS,
+                   CREATE TABLE IF NOT EXISTS ticket,
                    (
                        code     integer primary key AUTOINCREMENT ,
                        name     text not null,
