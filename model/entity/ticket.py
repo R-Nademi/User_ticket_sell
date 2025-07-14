@@ -3,7 +3,7 @@ from model.tools.validation import *
 
 
 class Ticket:
-    def _init_(self, code, name, family,birth_date, origin, destination, start_date_time,
+    def __init__(self, code, name, family,birth_date, origin, destination, start_date_time,
                  end_date_time, ticket_type,seat_number, price):
         self.code = code
         self.name = name

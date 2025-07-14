@@ -8,12 +8,5 @@
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/model/repository/ticket.db.sqlite</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="ticket.db.sqlite [2]" uuid="7ce25437-4648-4726-8298-e280c4dd53da">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/model/repository/ticket.db.sqlite</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
   </component>
 </project>

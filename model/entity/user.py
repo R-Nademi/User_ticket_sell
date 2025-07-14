@@ -76,3 +76,13 @@ class User:
     def role(self, value):
         role_validation(value)
         self._role = value
+
+    @property
+    def locked(self):
+        return  self._locked
+
+
+    @locked.setter
+    def locked(self, value):
+        locked_validation(value)
+        self._locked = value

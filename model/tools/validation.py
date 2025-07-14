@@ -36,6 +36,11 @@ def role_validation(role):
         raise ValueError("Invalid role !!!")
 
 
+def locked_validation(locked):
+    if not re.match(r"^[a-zA-Z\s]{3,30}$",locked):
+        raise ValueError("Invalid locked !!!")
+
+
 def origin_validation(origin):
     if not  re.match(r"^[a-zA-Z\s]{3,30}$", origin):
         raise ValueError("Invalid origin !!!")
