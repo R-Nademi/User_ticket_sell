@@ -16,7 +16,7 @@ class UserRepository:
     def save(self, user):
         self.connect()
         self.cursor.execute(
-            """insert into users
+            """insert into users,
                 ( name, family, username, password, role, locked)
             values
                 (?,?,?,?,?,?)""",
