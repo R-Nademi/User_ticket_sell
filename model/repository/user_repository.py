@@ -4,7 +4,7 @@ import sqlite3
 class UserRepository:
     def connect(self):
         print(os.getcwd())
-        self.connection = sqlite3.connect(f"{main_path}/model/repository/sell_db.sqlite")
+        self.connection = sqlite3.connect(f"{main_path}/model/repository/ticket_db.sqlite")
         self.cursor = self.connection.cursor()
 
     def disconnect(self, commit=False):
