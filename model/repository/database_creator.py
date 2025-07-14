@@ -3,7 +3,7 @@ import sqlite3
 def create_database():
 
 
-    connection = sqlite3.connect("tickets.db.sqlite")
+    connection = sqlite3.connect("ticket.db.sqlite")
 
 
 
