@@ -11,23 +11,23 @@ def create_database():
     cursor.execute("""
                    CREATE TABLE IF NOT EXISTS ticket,
                    (
-                       code     integer primary key AUTOINCREMENT ,
-                       name     text not null,
-                       family   text not null,
-                       username text not null unique,
-                       password text not null,
-                       role     text not null,
-                       locked   tinyint default 0
+                       "code"     integer primary key AUTOINCREMENT ,
+                       "name"     text not null,
+                       "family"   text not null,
+                       "username" text not null unique,
+                       "password" text not null,
+                       "role"     text not null,
+                       "locked"   tinyint default 0
                    )
                    """)
 
     cursor.execute("""
                    CREATE TABLE IF NOT EXISTS Patient,
                    (
-                       code         integer primary key,
-                       name         text not null,
-                       family       text not null,
-                       phone_number text
+                       "code"         integer primary key,
+                       "name"         text not null,
+                       "family"       text not null,
+                       "phone_number" text
                    )
                    """)
 
