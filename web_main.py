@@ -1,6 +1,6 @@
 from flask import Flask, render_template,request
 
-from controller.ticket_controller import UserController
+from controller.ticket_controller import TicketController
 
 app = Flask(__name__, template_folder="view")
 
@@ -10,7 +10,7 @@ def index():
 
 @app.route("/users", methods=["POST"])
 def save_user():
-    user_controller = UserController()
+    user_controller = TicketController()
     status, message = user_controller.save(
         request.form["name"],
         request.form["family"],

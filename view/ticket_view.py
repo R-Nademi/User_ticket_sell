@@ -1,5 +1,5 @@
 from controller import ticket_controller
-from controller.ticket_controller import UserController
+from controller.ticket_controller import TicketRepository
 from tkinter import *
 from tkinter import ttk as ttk
 from tkinter import messagebox as msg
@@ -81,7 +81,7 @@ class TicketView:
 
         self.table.tag_configure("OK", background="lightgreen")
         self.table.tag_configure("Locked", background="pink")
-        self.table.bind("<ButtonRelease>", self.select_user)
+        self.table.bind("<ButtonRelease>", self.select_ticket)
         self.table.place(x=300, y=100, height=460)
 
         Button(self.win, text="Save", command=self.save_click, width=34, height=2).place(x=20, y=450)
@@ -93,8 +93,8 @@ class TicketView:
         self.win.mainloop()
 
     def save_click(self):
-        user_controller = UserController()
-        status, message = user_controller.save(
+        ticket_controller = TicketRepository()
+        status, message = ticket_controller.save(
             self.name.get(),
             self.family.get(),
             self.user_name.get(),
@@ -109,8 +109,8 @@ class TicketView:
             msg.showerror("Save Error", message)
 
     def edit_click(self):
-        user_controller = UserController()
-        status, message = user_controller.edit(
+        t = TicketRepository()
+        status, message = ticket_controller.edit(
             self.code.get(),
             self.name.get(),
             self.family.get(),
@@ -126,8 +126,8 @@ class TicketView:
             msg.showerror("Edit Error", message)
 
     def delete_click(self):
-        user_controller = UserController()
-        status, message = user_controller.delete(
+        ticket_controller = TicketRepository()
+        status, message = ticket_controller.delete(
             self.code.get(),
         )
         if status:
@@ -141,12 +141,12 @@ class TicketView:
             for item in self.table.get_children():
                 self.table.delete(item)
 
-            for user in user_list:
+            for ticket in 'ticket_list':
                 self.table.insert(
                     "",
                     END,
-                    values=user,
-                    tags="Locked" if user[6] else "OK",
+                    values=ticket,
+                    tags="Locked" if ticket[6] else "OK",
                 )
         else:
              msg.showerror("Error", "Error getting users data")
@@ -159,22 +159,22 @@ class TicketView:
         self.password.set("")
         self.role.set("")
         self.locked.set(False)
-        user_controller = UserController()
-        status, user_list = user_controller.find_all()
-        self.show_data_on_table(status, user_list)
+        ticket_controller = TicketRepository()
+        status, ticket_list = ticket_controller.find_all()
+        self.show_data_on_table(status, ticket_list)
 
     def search_name_family(self, event):
-        user_controller = UserController()
-        status, user_list = user_controller.find_by_name_family(self.search_name.get(), self.search_family.get())
-        self.show_data_on_table(status, user_list)
+        ticket_controller = TicketRepository()
+        status, ticket_list = ticket_controller.find_by_name_family(self.search_name.get(), self.search_family.get())
+        self.show_data_on_table(status, ticket_list)
 
-    def select_user(self, event):
-        user = Ticket(* self.table.item(self.table.focus())["values"])
-        self.code.set(user.code)
-        self.name.set(user.name)
-        self.family.set(user.family)
-        self.user_name.set(user.username)
-        self.password.set(user.password)
-        self.role.set(user.role)
-        self.locked.set(bool(user.locked))
+    def select_ticket(self, event):
+        ticket = Ticket(* self.table.item(self.table.focus())["values"])
+        self.code.set(ticket.code)
+        self.name.set(ticket.name)
+        self.family.set(ticket.family)
+        self.user_name.set(ticket.username)
+        self.password.set(ticket.password)
+        self.role.set(ticket.role)
+        self.locked.set(bool(ticket.locked))
 
