@@ -5,7 +5,7 @@ from model.tools.validation import *
 
 
 class User:
-    def init(self, code, name, family, username,password,role,locked=False):
+    def __init__(self, code, name, family, username,password,role,locked=False):
         self.code = code
         self.name = name
         self.family = family
