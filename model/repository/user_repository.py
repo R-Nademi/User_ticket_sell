@@ -1,10 +1,10 @@
-from model.repository.database_creator import main_path
+from model.repository.database_creator import main
 import sqlite3
 
-class UserRepository:
+class TicketRepository:
     def connect(self):
         print('os'.getcwd())
-        self.connection = sqlite3.connect(f"{main_path}/model/repository/ticket_db.sqlite")
+        self.connection = sqlite3.connect(f"{main}/model/repository/ticket_db.sqlite")
         self.cursor = self.connection.cursor()
 
     def disconnect(self, commit=False):
