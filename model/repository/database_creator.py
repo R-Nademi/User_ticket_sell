@@ -1,5 +1,6 @@
 import sqlite3
 
+
 def create_database():
     # اتصال
     connection = sqlite3.connect("ticket.db.sqlite")

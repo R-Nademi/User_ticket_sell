@@ -6,12 +6,12 @@ app = Flask(__name__, template_folder="view")
 
 @app.route("/")
 def index():
-    return render_template("user.html")
+    return render_template("ticket.html")
 
-@app.route("/users", methods=["POST"])
-def save_user():
-    user_controller = TicketController()
-    status, message = user_controller.save(
+@app.route("/ticket", methods=["POST"])
+def save_ticket():
+    ticket_controller = TicketController()
+    status, message = ticket_controller.save(
         request.form["name"],
         request.form["family"],
         request.form["username"],
@@ -20,7 +20,7 @@ def save_user():
         False
     )
     print(status, message)
-    return render_template("user.html")
+    return render_template("ticket.html")
 
 
 
