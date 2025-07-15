@@ -12,18 +12,18 @@ def create_database():
     cursor.execute(""",
                    CREATE TABLE IF NOT EXISTS Ticket,
                    (
-                       code     integer primary key AUTOINCREMENT,
-                       name     text not null,
-                       family   text not null,
-                       username text not null unique,
-                       password text not null,
-                       role     text not null,
+                       code     integer primary key AUTOINCREMENT
+                       name     text not null
+                       family   text not null
+                       username text not null unique
+                       password text not null
+                       role     text not null
                        locked   tinyint default 0
                    )
                    """)
 
     cursor.execute(""",
-                   CREATE TABLE IF NOT EXISTS Patient,
+                   CREATE TABLE IF NOT EXISTS Patient
                    (
                        code        integer primary key,
                        name       text not null,
