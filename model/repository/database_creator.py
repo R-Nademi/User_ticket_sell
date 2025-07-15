@@ -10,7 +10,7 @@ def create_database():
     cursor = connection.cursor()
 
     cursor.execute(""",
-                   CREATE TABLE IF NOT EXISTS User
+                   CREATE TABLE IF NOT EXISTS Ticket
                    (
                        code     integer primary key AUTOINCREMENT ,
                        name     text not null,
