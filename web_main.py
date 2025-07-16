@@ -6,7 +6,7 @@ app = Flask(__name__, template_folder="view")
 
 @app.route("/")
 def index():
-    return render_template("ticket.html")
+    return render_template("Ticket.html")
 
 @app.route("/ticket", methods=["POST"])
 def save_ticket():
@@ -26,8 +26,4 @@ if __name__ == "__main__":
     app.run(debug=True)
 
 
-
-
-
-
-app.run(host="192.168.39.100", port=80, debug=True)
+app.run(host="127.0.0.1:5000", port=80, debug=True)
