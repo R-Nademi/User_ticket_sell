@@ -22,6 +22,12 @@ def save_ticket():
     print(status, message)
     return render_template("ticket.html")
 
+if __name__ == "__main__":
+    app.run(debug=True)
+
+
+
+
 
 
 app.run(host="192.168.39.100", port=80, debug=True)
