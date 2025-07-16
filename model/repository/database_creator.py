@@ -1,17 +1,21 @@
 import sqlite3
 
 
+
+
+
 def create_database():
-    # اتصال
-    connection = sqlite3.connect("ticket.db.sqlite")
+    connection = sqlite3.connect()
+
+
 
     # ساخت جدول
     # عملیات ذخیره، ویرایش، حذف و انواع جستجو و گزارش
     cursor = connection.cursor()
 
     cursor.execute("""
-                   ,CREATE TABLE IF NOT EXISTS Ticket
-                   (
+                    (CREATE TABLE IF NOT EXISTS Ticket
+                   
                        code     integer primary key AUTOINCREMENT
                        name     text not null
                        family   text not null
@@ -19,12 +23,12 @@ def create_database():
                        password text not null
                        role     text not null
                        locked   tinyint default 0
-                   )
+                    )
                    """)
 
     cursor.execute("""
-                   ,CREATE TABLE IF NOT EXISTS Patient
-                   (
+                   (CREATE TABLE IF NOT EXISTS Patient
+                   
                        code        integer primary key
                        name       text not null
                        family      text not null

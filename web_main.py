@@ -6,7 +6,7 @@ app = Flask(__name__, template_folder="view")
 
 @app.route("/")
 def index():
-    return render_template("Ticket.html")
+    return render_template("ticket.html")
 
 @app.route("/ticket", methods=["POST"])
 def save_ticket():
