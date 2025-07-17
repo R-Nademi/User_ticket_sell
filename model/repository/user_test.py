@@ -1,13 +1,13 @@
-from model.entity.ticket import Ticket
+from model.entity.user import User
 
 
-ticket = Ticket(1, "Ali", "AliPour",
+user = User(1, "Ali", "AliPour",
                    "1360", "Mashhad",
            "Tehran", "10.30", "12.00",
                 "Airline","A21","30$")
 
 
-print(ticket)
+print(user)
 
 
 def __repr__(self):

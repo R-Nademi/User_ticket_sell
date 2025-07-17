@@ -4,9 +4,9 @@ import os
 
 
 from model.repository.database_creator import create_database
-from view.ticket_view import TicketView
+from view.user_view import UserView
 
 
 create_database()
 
-ui = TicketView()
+ui = UserView()

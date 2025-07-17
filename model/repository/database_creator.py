@@ -1,11 +1,11 @@
 import sqlite3
 
-
-
+from model.repository.user_test import ticket
 
 
 def create_database():
-    connection = sqlite3.connect()
+
+    connection = sqlite3.connect("ticket_db.sqlite3")
 
 
 

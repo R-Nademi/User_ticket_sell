@@ -6,7 +6,7 @@ def save(self, code, name, family, username, password, role, locked):
         cursor = connection.cursor()
         self.connect()
         self.cursor.execute(
-                """,insert into ticket,
+                """,insert into user,
                        (code, name, family, username, password, role, locked)
                    values (?, ?, ?, ?, ?, ?, ?)""",
             [code, name, family, username, password, role, locked])
