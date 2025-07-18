@@ -4,7 +4,7 @@ def save(self, code, name, family, username, password, role, locked):
         cursor = connection.cursor()
         self.connect()
         self.cursor.execute(
-                """insert into users,
+                """,insert into users,
                        (code, name, family, username, password, role, locked)
                    values (?, ?, ?, ?, ?, ?, ?)""",
             [code, name, family, username, password, role, locked])

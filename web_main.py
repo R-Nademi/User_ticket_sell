@@ -24,4 +24,12 @@ def save_user():
 
 
 
-app.run(host="192.168.39.100", port=80, debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
+
+
+
+
+
+
+
