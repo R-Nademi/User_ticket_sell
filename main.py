@@ -6,4 +6,8 @@ from view.user_view import UserView
 
 create_database()
 
-ui = UserView()
+
+if __name__ == "__main__":
+  ui = UserView()
+
+
