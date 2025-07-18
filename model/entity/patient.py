@@ -1,7 +1,3 @@
-from model.tools.validation import name_validator
-
-
-
 class Patient():
     def __init__(self, code, name, family,phone_number):
         self.code = code
@@ -16,7 +12,7 @@ class Patient():
 
     @code.setter
     def code(self, value):
-        code_validator(value)
+        code_validation(value)
         self._code = value
 
     @property
@@ -26,7 +22,7 @@ class Patient():
 
     @name.setter
     def name(self, value):
-        name_validator(value)
+        name_validation(value)
         self._name = value
 
 

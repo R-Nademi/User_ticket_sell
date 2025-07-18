@@ -48,7 +48,7 @@ class User:
 
     @username.setter
     def username(self, value):
-        username_validatio(value)
+        username_validation(value)
         self._username = value
 
 
