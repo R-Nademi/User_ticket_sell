@@ -4,14 +4,13 @@ import sqlite3
 db_folder = "model/repository"
 os.makedirs(db_folder, exist_ok=True)
 
-conn = sqlite3.connect(db_path)
-cursor = conn.cursor()
 
 
 def create_database():
 
     connection = sqlite3.connect("tickets_db.sqlite")
     cursor = connection.cursor()
+
 
 
     cursor.execute("""
