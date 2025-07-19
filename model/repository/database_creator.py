@@ -27,7 +27,7 @@ def create_database():
                    """)
 
     cursor.execute("""
-                   CREATE TABLE IF NOT EXISTS Patient (
+                   CREATE TABLE IF NOT EXISTS Patient  ( 
                    
                        code         integer primary key,
                        name         text not null,
