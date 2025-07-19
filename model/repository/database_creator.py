@@ -1,21 +1,16 @@
-import os
 import sqlite3
 
-db_folder = "model/repository"
-os.makedirs(db_folder, exist_ok=True)
-
-
-
 def create_database():
+    # اتصال
+    connection = sqlite3.connect("hospital_db.sqlite")
 
-    connection = sqlite3.connect("tickets_db.sqlite")
+    # ساخت جدول
+    # عملیات ذخیره، ویرایش، حذف و انواع جستجو و گزارش
     cursor = connection.cursor()
 
-
-
     cursor.execute("""
-                   CREATE TABLE IF NOT EXISTS USERS (
-                   
+                   CREATE TABLE IF NOT EXISTS USERS
+                   (
                        code     integer primary key AUTOINCREMENT ,
                        name     text not null,
                        family   text not null,
@@ -27,8 +22,8 @@ def create_database():
                    """)
 
     cursor.execute("""
-                   CREATE TABLE IF NOT EXISTS Patient  ( 
-                   
+                   CREATE TABLE IF NOT EXISTS Patient
+                   (
                        code         integer primary key,
                        name         text not null,
                        family       text not null,
@@ -38,6 +33,6 @@ def create_database():
 
     connection.commit()
 
-
+    # قطع اتصال
     cursor.close()
     connection.close()
