@@ -1,10 +1,11 @@
-import sqlite3
 import os
+import sqlite3
+
 
 
 class UserRepository:
     def __init__(self):
-        self.connect = None
+        self.connection = None
         self.cursor = None
 
 

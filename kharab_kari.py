@@ -1,3 +1,7 @@
+import sqlite3
+
+
+
 def save(self, code, name, family, username, password, role, locked):
     try:
         connection = sqlite3.connect("ticket_db.sqlite")
