@@ -21,3 +21,6 @@ where code=1;
 
 -- Delete
 delete from users where code =1;
+
+
+
