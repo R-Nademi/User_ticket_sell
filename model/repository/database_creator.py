@@ -1,11 +1,15 @@
-import sqlite3
 import os
+import sqlite3
+
+db_folder = "model/repository"
+os.makedirs(db_folder, exist_ok=True)
+
 
 
 
 def create_database():
     # اتصال
-    connection = sqlite3.connect("hospital_db.sqlite")
+    connection = sqlite3.connect("tickets_db.sqlite")
 
     # ساخت جدول
     # عملیات ذخیره، ویرایش، حذف و انواع جستجو و گزارش
