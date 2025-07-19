@@ -1,5 +1,9 @@
 import re
 
+def code_validator(code):
+    if not re.match(r"^[A-Z]{2}[0-9]{3}[A-Z]$", code):
+        return ValueError("Invalid code !!!")
+
 
 def name_validator(name):
     if not re.match(r"^[a-zA-Z\s]{3,30}$", name):
@@ -8,6 +12,12 @@ def name_validator(name):
 def family_validator(family):
     if not re.match(r"^[a-zA-Z\s]{3,30}$", family):
         raise ValueError("Invalid family !!!")
+
+
+def  phone_number_validator(phone):
+    if not re.match(r"^\+?1?\d{9,15}$", phone):
+        raise ValueError("Invalid phone number !!!")
+
 
 def username_validator(username):
     if not re.match(r"^[a-zA-Z\s]{3,30}$", username):

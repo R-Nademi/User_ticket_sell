@@ -1,4 +1,6 @@
-from model.tools.validation import name_validator
+from model.tools.validation import name_validator, code_validator, family_validator, username_validator, \
+    password_validator, role_validator, locked_validator
+
 
 class User:
     def __init__(self, code, name, family, username, password, role, locked=False):
@@ -10,13 +12,15 @@ class User:
         self.role = role
         self.locked = locked
 
+
+
     @property
     def code(self):
         return  self._code
 
     @code.setter
     def code(self, value):
-        code_validation(value)
+        code_validator(value)
         self._code = value
 
 
@@ -32,12 +36,12 @@ class User:
 
     @property
     def family(self):
-        return   self._family
+        return  self._family
 
 
     @family.setter
     def family(self, value):
-        family_validation(value)
+        family_validator(value)
         self._family = value
 
 
@@ -48,7 +52,7 @@ class User:
 
     @username.setter
     def username(self, value):
-        username_validation(value)
+        username_validator(value)
         self._username = value
 
 
@@ -60,7 +64,7 @@ class User:
 
     @password.setter
     def password(self, value):
-        password_validation(value)
+        password_validator(value)
         self._password = value
 
 
@@ -71,7 +75,7 @@ class User:
 
     @role.setter
     def role(self, value):
-        role_validation(value)
+        role_validator(value)
         self._role = value
 
 
@@ -83,7 +87,7 @@ class User:
 
     @locked.setter
     def locked(self, value):
-        locked_validation(value)
+        locked_validator(value)
         self._locked = value
 
 
