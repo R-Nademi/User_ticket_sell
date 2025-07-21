@@ -1,4 +1,14 @@
+from flask import Flask
+
+app = Flask(__name__)
+
+
 from view.ticket_view import TicketView
 
 
-ui = TicketView()
+
+
+if __name__ == "__main__":
+  ui = TicketView()
+
+
