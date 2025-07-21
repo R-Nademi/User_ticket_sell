@@ -1,23 +1,20 @@
 from tkinter import *
 import tkinter.ttk as ttk
 import tkinter.messagebox as msg
-from controller.ticket_controller import TicketController, ticket_list
+from controller.ticket_controller import TicketController
 from model.entity.ticket import Ticket
-
+from test.ticket_test import ticket_controller
 
 
 class TicketView:
     def __init__(self):
-        global ticket_list # noqa
-        ticket_list = []
-
         self.win = Tk()
         self.win.title("Ticket View")
         self.win.geometry("1000x600")
 
+    def __repr__(self):
+        return f"{self.__dir__()}Ticket View"
 
-        for ticket in ticket_list:
-            self.table.insert("", "end", values=ticket.to_dict() )
 
 
 
@@ -37,7 +34,7 @@ class TicketView:
         self.seat_number.set("")
         self.price.set(0)
 
-        self.load_data()
+
 
     def save_btn_click(self):
         ticket_controller = TicketController()
@@ -48,8 +45,8 @@ class TicketView:
             msg.showerror("Error", "\n".join(errors))
         else:
             msg.showinfo("Success", "Ticket saved successfully.")
-            # ticket_list.append(ticket)
-            # write_to_file(ticket_list)
+
+
             self.reset_form()
 
     def table_select(self,event):
@@ -57,7 +54,7 @@ class TicketView:
         selected = self.table.item(self.table.focus())["values"]
         if selected:
             selected_ticket = Ticket(*selected) # noqa
-            self.code.set(selected_ticket.code)  # noqa
+            self.code.set(selected_ticket.code)
             self.name.set(selected_ticket.name)
             self.family.set(selected_ticket.family)
             self.birth_date.set(selected_ticket.birth_date)
@@ -71,7 +68,7 @@ class TicketView:
 
     def edit_btn_click(self):
         selected_index = None
-        for i, ticket in enumerate(ticket_list):
+        for i, ticket in enumerate(ticket_controller.tickets):
             if ticket.name == self.name.get() and ticket.date_time == self.start_date_time.get():
                 selected_index = i
                 break
@@ -95,7 +92,7 @@ class TicketView:
             if errors:
                 msg.showerror("Error", "\n".join(errors))
             else:
-                ticket_list[selected_index] = updated
+                ticket_controller[selected_index] = updated
                 write_to_file(ticket_list)  # noqa
                 self.reset_form()
                 msg.showinfo("Success", "Ticket updated successfully.")
@@ -106,10 +103,10 @@ class TicketView:
     def remove_btn_click(self):
         target_name = self.name.get()
         target_date = self.start_date_time.get()
-        for i, ticket in enumerate(ticket_list):
+        for i, ticket in enumerate(ticket_controller):
             if ticket.name == target_name and ticket.date_time == target_date:
                 if msg.askyesno("Confirm", "Are you sure to delete this ticket?"):
-                    del ticket_list[i]
+                    del ticket_controller[i]
                     write_to_file(ticket_list)  # noqa
                     self.reset_form()
                     msg.showinfo("Deleted", "Ticket deleted successfully.")
@@ -118,7 +115,7 @@ class TicketView:
 
     # -------------------- طراحی رابط گرافیکی --------------------
 
-    def _init_(self):
+    def __init__(self):
         # ایجاد پنجره اصلی
         self.window = Tk()
         self.window.title("Ticket Info")
@@ -213,6 +210,6 @@ class TicketView:
         Button(self.window, text="Search", width=10, command=self.reset_form).place(x=20, y=360)
         Button(self.window, text="Sell", width=10, command=self.reset_form).place(x=130, y=360)
 
-        self.reset_form()
 
-        self.win.mainloop()
+        self.window.mainloop()
+

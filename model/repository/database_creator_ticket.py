@@ -18,7 +18,7 @@ def create_database():
     cursor.execute("""
                    CREATE TABLE IF NOT EXISTS USERS
                    (
-                       code     integer primary key AUTOINCREMENT ,
+                       code     integer primary key AUTOINCREMENT 
                        name     text not null,
                        family   text not null,
                        birth_date text not null unique,
