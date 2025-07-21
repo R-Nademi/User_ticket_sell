@@ -11,7 +11,7 @@ class UserRepository:
 
     def connect(self):
         print(os.getcwd())
-        self.connection = sqlite3.connect("model/repository/ticket_db.sqlite")
+        self.connection = sqlite3.connect("model/repository/user_db.sqlite")
         self.cursor = self.connection.cursor()
 
     def disconnect(self, commit=False):

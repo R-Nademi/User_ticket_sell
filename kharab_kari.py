@@ -4,7 +4,7 @@ import sqlite3
 
 def save(self, code, name, family, username, password, role, locked):
     try:
-        connection = sqlite3.connect("ticket_db.sqlite")
+        connection = sqlite3.connect("user_db.sqlite")
         cursor = connection.cursor()
         self.connect()
         self.cursor.execute(
