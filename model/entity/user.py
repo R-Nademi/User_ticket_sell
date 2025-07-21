@@ -1,5 +1,5 @@
 from model.tools.validation import (name_validator, code_validator, family_validator,
- username_validator, password_validator, role_validator, locked_validator)
+                                    username_validator, password_validator, role_validator, locked_validator)
 
 
 
