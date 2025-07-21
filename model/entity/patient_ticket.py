@@ -1,6 +1,7 @@
 from model.tools.validation import (name_validator, family_validator, code_validator,
                                     birth_date_validator,origin_validator,description_validator,
-                                    star)
+                                    start_date_time_validatorend_date_time_validator,
+                                    ticket_type_validator,price_validator)
 
 
 class Patient:
@@ -73,8 +74,14 @@ class Patient:
     def description(self):
         return    self._description
 
+
     @description.setter
     def description(self, value):
+        description_validator(value)
+        self._description = value
+
+
+
 
 
 
