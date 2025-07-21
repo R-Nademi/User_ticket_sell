@@ -169,7 +169,7 @@ class UserView:
 
     def select_user(self, event):
         user = User(* self.table.item(self.table.focus())["values"])
-        self.code.set(user.code)
+        self.code.set(user.code)  # noqa
         self.name.set(user.name)
         self.family.set(user.family)
         self.user_name.set(user.username)

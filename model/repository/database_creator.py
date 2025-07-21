@@ -9,7 +9,7 @@ os.makedirs(db_folder, exist_ok=True)
 
 def create_database():
     # اتصال
-    connection = sqlite3.connect("tickets_db.sqlite")
+    connection = sqlite3.connect("user_db.sqlite")
 
     # ساخت جدول
     # عملیات ذخیره، ویرایش، حذف و انواع جستجو و گزارش
@@ -29,7 +29,7 @@ def create_database():
                    """)
 
     cursor.execute("""
-                   CREATE TABLE IF NOT EXISTS Patient
+                   CREATE TABLE IF NOT EXISTS USER_PASSENGER
                    (
                        code         integer primary key,
                        name         text not null,

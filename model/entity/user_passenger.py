@@ -1,8 +1,8 @@
-from model.tools.validation import (name_validator, family_validator, code_validator,
-                                    phone_number_validator)
+from model.tools.validation_user import (name_validator, family_validator, code_validator,
+                                         phone_number_validator)
 
 
-class Patient:
+class UserPassenger:
     def __init__(self, code, name, family,phone_number):
         self.code = code
         self.name = name

@@ -1,6 +1,9 @@
 from tkinter import *
 import tkinter.ttk as ttk
 import tkinter.messagebox as msg
+
+from coverage.html import read_data
+
 from controller.ticket_controller import TicketController
 from model.entity.ticket import Ticket
 
@@ -8,7 +11,7 @@ from model.entity.ticket import Ticket
 class TicketView:
     def load_data(self):
         global ticket_list
-        ticket_list = read_from_file()
+        ticket_list = read_data()
 
         for ticket in ticket_list:
             self.table.insert("", END, values=ticket.to_tuple())
@@ -61,15 +64,26 @@ class TicketView:
     def edit_btn_click(self):
         selected_index = None
         for i, ticket in enumerate(ticket_list):
-            if ticket.name == self.name.get() and ticket.start_date_time == self.start_date_time.get():
+            if ticket.name == self.name.get() and ticket.date_time == self.start_date_time.get():
                 selected_index = i
                 break
 
         if selected_index is not None:
-            updated = Ticket(self.code.get(), self.name.get(), self.family.get(), self.birth_date.get(), self.origin.get(), self.destination.get(),
-                             self.start_date_time.get(), self.end_date_time.get(),
-                             self.ticket_type.get(), self.seat_number.get(), int(self.price.get()))
-            errors = updated.values()
+            updated = Ticket
+            (
+                             self.code.get(),
+                             self.name.get(),
+                             self.family.get(),
+                             self.birth_date.get(),
+                             self.origin.get(),
+                             self.destination.get(),
+                             self.start_date_time.get(),
+                             self.end_date_time.get(),
+                             self.ticket_type.get(),
+                             self.seat_number.get(),
+                             self.price.get(),
+            )
+            errors = updated.values = self.table.item(self.table.focus())["values"]
             if errors:
                 msg.showerror("Error", "\n".join(errors))
             else:

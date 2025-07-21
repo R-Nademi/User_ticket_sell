@@ -5,7 +5,7 @@ from model.repository.user_repository import UserRepository
 class UserController:
     def save(self, name, family, username, password, role, locked):
         try:
-            user = User(None, name, family, username, password, role, locked)
+            user = User( name, family, username, password, role, locked)
             user_repo = UserRepository()
             user_repo.save(user)
             return True, f"User saved {user}"

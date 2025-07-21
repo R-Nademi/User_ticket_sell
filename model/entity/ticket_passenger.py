@@ -1,10 +1,11 @@
-from model.tools.validation import (name_validator, family_validator, code_validator,
-                                    birth_date_validator,origin_validator,description_validator,
-                                    start_date_time_validatorend_date_time_validator,
-                                    ticket_type_validator,price_validator)
+from model.tools.validation_ticket import (name_validator,family_validator,code_validator,
+birth_date_validator, origin_validator,destination_validator,
+start_date_time_validator,end_date_time_validator,
+ticket_type_validator, price_validator)
 
 
-class Patient:
+
+class TicketPassenger:
     def __init__(self, code, name, family,birth_date,origin,description,
                  start_date_time,end_date_time,ticket_type,price):
         self.code = code
@@ -77,17 +78,48 @@ class Patient:
 
     @description.setter
     def description(self, value):
-        description_validator(value)
+        destination_validator(value)
         self._description = value
 
+    @property
+    def start_date_time(self):
+        return   self._start_date_time
+
+    @start_date_time.setter
+    def start_date_time(self, value):
+        start_date_time_validator(value)
+        self._start_date_time = value
+
+
+    @property
+    def end_date_time(self):
+        return    self._end_date_time
+
+    @end_date_time.setter
+    def end_date_time(self, value):
+        end_date_time_validator(value)
+        self._end_date_time = value
 
 
 
+    @property
+    def ticket_type(self):
+        return  self._ticket_type
+
+    @ticket_type.setter
+    def ticket_type(self, value):
+        ticket_type_validator(value)
+        self._ticket_type = value
 
 
+    @property
+    def price(self):
+        return   self._price
 
-
-
+    @price.setter
+    def price(self, value):
+        price_validator(value)
+        self._price = value
 
 
 
