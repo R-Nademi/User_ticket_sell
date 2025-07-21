@@ -1,20 +1,28 @@
 from tkinter import *
 import tkinter.ttk as ttk
 import tkinter.messagebox as msg
-
-from coverage.html import read_data
-
-from controller.ticket_controller import TicketController
+from controller.ticket_controller import TicketController, ticket_list
 from model.entity.ticket import Ticket
 
 
+
 class TicketView:
-    def load_data(self):
-        global ticket_list
-        ticket_list = read_data()
+    def __init__(self):
+        global ticket_list # noqa
+        ticket_list = []
+
+        self.win = Tk()
+        self.win.title("Ticket View")
+        self.win.geometry("1000x600")
+
 
         for ticket in ticket_list:
-            self.table.insert("", END, values=ticket.to_tuple())
+            self.table.insert("", "end", values=ticket.to_dict() )
+
+
+
+
+
 
     def reset_form(self):
         self.code.set("")
@@ -48,8 +56,8 @@ class TicketView:
         print(event.widget.get())
         selected = self.table.item(self.table.focus())["values"]
         if selected:
-            selected_ticket = Ticket(*selected)
-            self.code.set(selected_ticket.code)
+            selected_ticket = Ticket(*selected) # noqa
+            self.code.set(selected_ticket.code)  # noqa
             self.name.set(selected_ticket.name)
             self.family.set(selected_ticket.family)
             self.birth_date.set(selected_ticket.birth_date)
@@ -205,6 +213,6 @@ class TicketView:
         Button(self.window, text="Search", width=10, command=self.reset_form).place(x=20, y=360)
         Button(self.window, text="Sell", width=10, command=self.reset_form).place(x=130, y=360)
 
-        self.load_data()
+        self.reset_form()
 
-        self.window.mainloop()
+        self.win.mainloop()

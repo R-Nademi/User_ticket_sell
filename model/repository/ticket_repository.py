@@ -11,7 +11,7 @@ class TicketRepository:
 
     def connect(self):
         print(os.getcwd())
-        self.connection = sqlite3.connect("model/repository/user_db.sqlite")
+        self.connection = sqlite3.connect("model/repository/ticket_db.sqlite")
         self.cursor = self.connection.cursor()
 
     def disconnect(self, commit=False):
@@ -24,20 +24,18 @@ class TicketRepository:
         self.connect()
         self.cursor.execute(
             """,insert into tickets
-                (name,family,birth_date,origin,destination,start_date_time,end_date_time,
-                ticket_type,seat_number,price)
+                (code,name,family,birth_date,origin,description,start_date_time,end_date_time,ticket_type,seat_number,price) 
             values
                 (?,?,?,?,?,?)""",
-            [ticket.code, name, family,birth_date, origin, destination, start_date_time,end_date_time,
-             ticket_type,
-             seat_number,price])
-        
+            [ticket.code, ticket.name, ticket.family, ticket.birth_date, ticket.origin, ticket.description,
+             ticket.start_date_time,ticket.end_date_time,ticket.ticket_type,ticket.seat_number,ticket.price])
         self.disconnect(commit=True)
 
     def edit(self, ticket):
         self.connect()
-        self.cursor.execute(",update ticket set name=?, family=?, birth_date=?, origin=?, destination=?,",
-                       [ticket.name, ticket.family, ticket.ticketname, ticket.password, ticket.role, ticket.locked, ticket.code])
+        self.cursor.execute(",update tickets set name=?, family=?, ticket_list=?, password=?, role=?, locked=? where code=?",
+                       [ticket.name, ticket.family, ticket.birth_date, ticket.origin, ticket.description,ticket.start_date_time,
+                        ticket.end_date_time,ticket.ticket_type,ticket.seat_number,ticket.price])
         self.disconnect(commit=True)
 
     def delete(self, code):
@@ -66,16 +64,16 @@ class TicketRepository:
         self.disconnect()
         return ticket_list
 
-    def find_by_ticketname(self, ticketname):
+    def find_by_ticket(self, ticket):
         self.connect()
-        self.cursor.execute(",select * from tickets where ticketname = ?", [ticketname])
+        self.cursor.execute(",select * from tickets where ticket = ?", [ticket])
         ticket = self.cursor.fetchone()
         self.disconnect()
         return ticket
 
-    def find_by_ticketname_and_password(self, ticketname, password):
+    def find_by_ticket_and_password(self, ticket, password):
         self.connect()
-        self.cursor.execute(",select * from tickets where ticketname = ? and password = ?", [ticketname, password])
+        self.cursor.execute(",select * from tickets where ticket = ? and password = ?", [ticket, password])
         ticket = self.cursor.fetchone()
         self.disconnect()
         return ticket
