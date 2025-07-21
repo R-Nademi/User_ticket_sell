@@ -1,4 +1,3 @@
-from controller import user_controller
 from controller.user_controller import UserController
 from tkinter import *
 from tkinter import ttk as ttk
