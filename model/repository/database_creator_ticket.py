@@ -1,10 +1,4 @@
-import os
 import sqlite3
-
-db_folder = "model/repository"
-os.makedirs(db_folder, exist_ok=True)
-
-
 
 
 def create_database():
@@ -14,12 +8,13 @@ def create_database():
     # ساخت جدول
     # عملیات ذخیره، ویرایش، حذف و انواع جستجو و گزارش
     cursor = connection.cursor()
+    cursor.execute("DROP TABLE IF EXISTS tickets")
 
     cursor.execute("""
-                   CREATE TABLE IF NOT EXISTS USERS
-                   (
+                   CREATE TABLE IF NOT EXISTS USERS  (
+                   
                        code     integer primary key AUTOINCREMENT 
-                       name     text not null,
+                       "name"     text not null,
                        family   text not null,
                        birth_date text not null unique,
                        origin text  not null,
@@ -34,15 +29,15 @@ def create_database():
                    """)
 
     cursor.execute("""
-                   CREATE TABLE IF NOT EXISTS TICKET
-                   (
+                   CREATE TABLE IF NOT EXISTS TICKET (
+                   
                        code         integer primary key,
-                       name         text not null,
+                       "name"         text not null,
                        family       text not null,
                        origin       text not null,
                        destination   text not null,
                        
-                   )
+                      );
                    """)
 
     connection.commit()
