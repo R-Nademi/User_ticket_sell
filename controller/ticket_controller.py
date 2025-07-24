@@ -1,44 +1,83 @@
 from model.entity.ticket import Ticket
 
+from model.repository.ticket_repository import TicketRepository
 
-ticket_list = []
+
+
+
+
+
 
 class TicketController:
-    def save(self,code,name,family,birth_date,origin,destination,start_date_time,end_date_time,ticket_type,seat_number,price):
+    def save(self, code,name, family, birth_date,origin,destination,start_date_time,end_date_time,ticket_type,
+             seat_number,price):
         try:
-            ticket = Ticket(code,name,family,birth_date,origin,destination,start_date_time,end_date_time,ticket_type,seat_number, price)
-            ticket_list.append(ticket)
-            return True,f"ticket save successfully{ticket}"
+            ticket = Ticket( code,name, family, birth_date,origin,destination,start_date_time,end_date_time,
+                             ticket_type,seat_number,price)
+            ticket_repo = TicketRepository()
+            ticket_repo.save(ticket)
+            return True, f"Ticket saved {ticket}"
         except Exception as e:
-            return False,f"save error{e}"
+            return False,f"Error saving ticket {e}"
 
-
-    def edit(self,code,name, family,birth_date,origin,destination,start_date_time,end_date_time,ticket_type,price):
+    def edit(self, code, name, family, birth_date, origin, destination, start_date_time, end_date_time,
+             ticket_type, seat_number, price):
         try:
-            ticket = Ticket(code,name,family,birth_date,origin,destination,start_date_time,end_date_time,ticket_type,price)
-            return True,f"ticket edit successfully{ticket}"
+            ticket = Ticket(code, name, family, birth_date,origin,destination,start_date_time,end_date_time,
+                            ticket_type, seat_number,price)
+            ticket_repo = TicketRepository()
+            ticket_repo.edit(ticket)
+            return True, f"Ticket edited {ticket}"
         except Exception as e:
-            return False,f"edit error{e}"
+            return False,f"Error editing ticket {e}"
 
-
-
-    def remove(self,code):
+    def delete(self, code,name,family, birth_date, origin, destination, start_date_time, end_date_time,
+               ticket_type, seat_number, price):
         try:
-            return True, f"ticket removed successfully - {code}"
+            ticket = Ticket(code,name,family,birth_date,origin,destination,start_date_time,end_date_time,
+                            ticket_type,seat_number,price)
+            ticket_repo = TicketRepository()
+            ticket_repo.delete(ticket)
+            return True, f"Ticket removed {code}"
         except Exception as e:
-            return False, f"ticket removed failed\n{e}"
-
-
+            return False,f"Error removing ticket {e}"
 
     def find_all(self):
         try:
-            return True, f"ticket find all successfully - {ticket_list}"
+            ticket_repo = TicketRepository()
+            return True, ticket_repo.find_all()
         except Exception as e:
-            return False,f"ticket find all failed\n{e}"
+            return False, f"Error find all tickets {e}"
 
-
-    def sell(self):
+    def find_by_ticket(self, code):
         try:
-            return True, f"ticket sell successfully - {ticket_list}"
+            ticket_repo = TicketRepository()
+            return True, ticket_repo.find_by_ticket(code)
         except Exception as e:
-            return False,f"ticket sell failed\n{e}"
+            return False, f"Error find ticket code : {code} Error :{e}"
+
+    def find_by_ticket(self, name, family):
+        try:
+            ticket_repo = TicketRepository()
+            return True, ticket_repo.find_by_ticket(name, family)
+        except Exception as e:
+            return False, f"Error find tickets name : {name} - family {family} -- Error {e}"
+
+    def find_by_ticket(self, name):
+        try:
+            ticket_repo = TicketRepository()
+            return True, ticket_repo.find_by_ticket(name)
+        except Exception as e:
+            return False, f"Error find tickets name : {name}  -- Error {e}"
+
+    def find_by_ticket(self, name, password):
+        try:
+            ticket_repo = TicketRepository()
+            return True, ticket_repo.find_by_ticket(name,password)
+        except Exception as e:
+            return False, f"Error find tickets  name:password : {name}:{password}  -- Error {e}"
+
+
+
+
+

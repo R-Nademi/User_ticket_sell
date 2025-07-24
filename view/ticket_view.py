@@ -123,6 +123,7 @@ class TicketView:
     def save_click(self):
         ticket_controller = TicketController()
         status, message = ticket_controller.save(
+            self.code.get(),
             self.name.get(),
             self.family.get(),
             self.family.get(),
@@ -155,6 +156,7 @@ class TicketView:
             self.end_date_time.get(),
             self.ticket_type.get(),
             self.seat_number.get(),
+            self.price.get(),
 
 
         )
@@ -168,12 +170,23 @@ class TicketView:
         ticket_controller = TicketController()
         status, message = ticket_controller.delete(
             self.code.get(),
+            self.name.get(),
+            self.family.get(),
+            self.birth_date.get(),
+            self.origin.get(),
+            self.destination.get(),
+            self.start_date_time.get(),
+            self.end_date_time.get(),
+            self.ticket_type.get(),
+            self.seat_number.get(),
+            self.price.get(),
+
         )
         if status:
-            msg.showinfo("Remove", message)
+            msg.showinfo("delete", message)
             self.reset_form()
         else:
-            msg.showerror("Remove Error", message)
+            msg.showerror("delete Error", message)
 
     def show_data_on_table(self, status, ticket_list):
         if status:
@@ -183,9 +196,7 @@ class TicketView:
             for ticket in ticket_list:
                 self.table.insert(
                     "",
-                    END
-
-                )
+                    END)
 
 
     def reset_form(self):

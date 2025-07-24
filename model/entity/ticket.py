@@ -20,11 +20,6 @@ class Ticket:
 
 
 
-    def _repr_(self):
-        return f"{self._dict_}"
-
-    def to_tuple(self):
-        return tuple(self._dict_.values())
 
     @property
     def code(self):
@@ -124,3 +119,9 @@ class Ticket:
     def price(self, value):
         price_validator(value)
         self._price = value
+
+
+
+
+    def __repr__(self):
+        return f"{self.__dict__}"
