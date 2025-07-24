@@ -12,16 +12,8 @@ class TicketController:
     def save(self, name, family, birth_date,origin,destination,start_date_time,end_date_time,
            ticket_type,seat_number,price ):
         try:
-            ticket = Ticket( name,
-                             family,
-                             birth_date,
-                             origin,
-                             destination,
-                             start_date_time,
-                             end_date_time,
-                             ticket_type,
-                             seat_number,
-                             price)
+            ticket = Ticket( name,family,birth_date,origin,destination,start_date_time,end_date_time,
+                             ticket_type,seat_number,price)
 
 
             ticket_repo = TicketRepository()
@@ -33,17 +25,8 @@ class TicketController:
     def edit(self, code, name, family, birth_date, origin, destination, start_date_time, end_date_time,
              ticket_type, seat_number, price):
         try:
-            ticket = Ticket(code,
-                            name,
-                            family,
-                            birth_date,
-                            origin,
-                            destination,
-                            start_date_time,
-                            end_date_time,
-                            ticket_type,
-                            seat_number,
-                            price)
+            ticket = Ticket(code,name,family,birth_date,origin,destination,start_date_time,end_date_time,
+                            ticket_type,seat_number,price)
 
             ticket_repo = TicketRepository()
             ticket_repo.edit(ticket)
@@ -54,17 +37,8 @@ class TicketController:
     def delete(self, code,name,family, birth_date, origin, destination, start_date_time, end_date_time,
                ticket_type, seat_number, price):
         try:
-            ticket = Ticket(code,
-                            name,
-                            family,
-                            birth_date,
-                            origin,
-                            destination,
-                            start_date_time,
-                            end_date_time,
-                            ticket_type,
-                            seat_number,
-                            price)
+            ticket = Ticket(code,name,family,birth_date,origin,destination,start_date_time, end_date_time,
+                            ticket_type, seat_number,price)
 
             ticket_repo = TicketRepository()
             ticket_repo.delete(ticket)
