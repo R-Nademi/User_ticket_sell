@@ -1,127 +1,19 @@
-from tkinter import *
-import tkinter.ttk as ttk
-import tkinter.messagebox as msg
 from controller.ticket_controller import TicketController
+from tkinter import *
+from tkinter import ttk as ttk
+from tkinter import messagebox as msg
+
 from model.entity.ticket import Ticket
-from test.ticket_test import ticket_controller
+
 
 
 class TicketView:
     def __init__(self):
-        self.win = Tk()
-        self.win.title("Ticket View")
-        self.win.geometry("1000x600")
-
-    def __repr__(self):
-        return f"{self.__dir__()}Ticket View"
-
-
-
-
-
-
-
-    def reset_form(self):
-        self.code.set("")
-        self.name.set("")
-        self.family.set("")
-        self.birth_date.set("")
-        self.origin.set("")
-        self.destination.set("")
-        self.start_date_time.set("")
-        self.end_date_time.set("")
-        self.ticket_type.set("")
-        self.seat_number.set("")
-        self.price.set(0)
-
-
-
-    def save_btn_click(self):
-        ticket_controller = TicketController()
-        errors = ticket_controller.save(self.code.get(), self.name.get(), self.family.get(), self.birth_date.get(), self.origin.get(), self.destination.get(),
-                        self.start_date_time.get(), self.end_date_time.get(), self.ticket_type.get(), self.seat_number.get(),
-                        self.price.get())
-        if errors:
-            msg.showerror("Error", "\n".join(errors))
-        else:
-            msg.showinfo("Success", "Ticket saved successfully.")
-
-
-            self.reset_form()
-
-    def table_select(self,event):
-        print(event.widget.get())
-        selected = self.table.item(self.table.focus())["values"]
-        if selected:
-            selected_ticket = Ticket(*selected) # noqa
-            self.code.set(selected_ticket.code)
-            self.name.set(selected_ticket.name)
-            self.family.set(selected_ticket.family)
-            self.birth_date.set(selected_ticket.birth_date)
-            self.origin.set(selected_ticket.origin)
-            self.destination.set(selected_ticket.destination)
-            self.start_date_time.set(selected_ticket.start_date_time)
-            self.end_date_time.set(selected_ticket.end_date_time)
-            self.ticket_type.set(selected_ticket.ticket_type)
-            self.seat_number.set(selected_ticket.seat_number)
-            self.price.set(selected_ticket.price)
-
-    def edit_btn_click(self):
-        selected_index = None
-        for i, ticket in enumerate(ticket_controller.tickets):
-            if ticket.name == self.name.get() and ticket.date_time == self.start_date_time.get():
-                selected_index = i
-                break
-
-        if selected_index is not None:
-            updated = Ticket
-            (
-                             self.code.get(),
-                             self.name.get(),
-                             self.family.get(),
-                             self.birth_date.get(),
-                             self.origin.get(),
-                             self.destination.get(),
-                             self.start_date_time.get(),
-                             self.end_date_time.get(),
-                             self.ticket_type.get(),
-                             self.seat_number.get(),
-                             self.price.get(),
-            )
-            errors = updated.values = self.table.item(self.table.focus())["values"]
-            if errors:
-                msg.showerror("Error", "\n".join(errors))
-            else:
-                ticket_controller[selected_index] = updated
-                write_to_file(ticket_list)  # noqa
-                self.reset_form()
-                msg.showinfo("Success", "Ticket updated successfully.")
-        else:
-            msg.showerror("Error", "Ticket not found for editing.")
-
-    # حذف بلیط
-    def remove_btn_click(self):
-        target_name = self.name.get()
-        target_date = self.start_date_time.get()
-        for i, ticket in enumerate(ticket_controller):
-            if ticket.name == target_name and ticket.date_time == target_date:
-                if msg.askyesno("Confirm", "Are you sure to delete this ticket?"):
-                    del ticket_controller[i]
-                    write_to_file(ticket_list)  # noqa
-                    self.reset_form()
-                    msg.showinfo("Deleted", "Ticket deleted successfully.")
-                    return
-        msg.showerror("Error", "Ticket not found or not selected.")
-
-    # -------------------- طراحی رابط گرافیکی --------------------
-
-    def __init__(self):
-        # ایجاد پنجره اصلی
         self.window = Tk()
-        self.window.title("Ticket Info")
+        self.window.title("Ticket View")
         self.window.geometry("1260x400")
 
-        # تعریف متغیرهای فرم
+       # تعریف متغیرهای فرم
         self.code = StringVar()
         self.name = StringVar()
         self.family = StringVar()
@@ -168,11 +60,24 @@ class TicketView:
         Label(self.window, text="Price:").place(x=20, y=200)
         Entry(self.window, textvariable=self.price).place(x=130, y=200)
 
+        # # search_by_name_family
+        Label(self.window, text="Search by Name").place(x=300, y=20)
+        self.search_name = StringVar()
+        self.search_name_txt = Entry(self.window, textvariable=self.search_name, width=23, fg="gray64")
+        self.search_name_txt.bind("<KeyRelease>", self.search_name_family)
+        self.search_name_txt.place(x=420, y=20)
+
+        Label(self.window, text="Search by Family").place(x=550, y=20)
+        self.search_family = StringVar()
+        self.search_family_txt = Entry(self.window, textvariable=self.search_family, width=23, fg="gray64")
+        self.search_family_txt.bind("<KeyRelease>", self.search_name_family)
+        self.search_family_txt.place(x=670, y=20)
+
         # جدول سمت راست برای نمایش بلیط‌ها
-        self.table = ttk.Treeview(self.window, columns=("ticket_type", "code", "name", "family", "birth_date", "origin",
-                                              "seat_number", "destination", "price", "start_date_time",
-                                              "end_date_time"),
-                             show="headings")
+        self.table = ttk.Treeview(self.window, columns=("code", "name", "family", "birth_date", "origin",
+                                               "destination", "start_date_time","end_date_time","ticket_type","seat_number","price"),
+                                               show="headings")
+                                  
         self.table.heading("code", text="code")
         self.table.heading("name", text="name")
         self.table.heading("family", text="family")
@@ -200,16 +105,122 @@ class TicketView:
 
         # جایگذاری جدول در سمت راست
         self.table.place(x=320, y=20, height=350)
-        self.table.bind("<<TreeviewSelect>>", self.table_select)
+        self.table.bind("<<TreeviewSelect>>")
 
         # دکمه‌ها پایین فرم
-        Button(self.window, text="Save", width=10, command=self.save_btn_click).place(x=20, y=280)
-        Button(self.window, text="Edit", width=10, command=self.edit_btn_click).place(x=130, y=280)
-        Button(self.window, text="Remove", width=10, command=self.remove_btn_click).place(x=20, y=320)
-        Button(self.window, text="Clear", width=10, command=self.reset_form).place(x=130, y=320)
-        Button(self.window, text="Search", width=10, command=self.reset_form).place(x=20, y=360)
-        Button(self.window, text="Sell", width=10, command=self.reset_form).place(x=130, y=360)
+        Button(self.window, text="Save", width=34, command=self.save_click).place(x=20, y=280)
+        Button(self.window, text="Edit", width=10, command=self.edit_click).place(x=20, y=320)
+        Button(self.window, text="delete", width=10, command=self.delete_click).place(x=185, y=320)
 
+
+
+
+        self.reset_form()
 
         self.window.mainloop()
+
+
+    def save_click(self):
+        ticket_controller = TicketController()
+        status, message = ticket_controller.save(
+            self.name.get(),
+            self.family.get(),
+            self.family.get(),
+            self.birth_date.get(),
+            self.origin.get(),
+            self.destination.get(),
+            self.start_date_time.get(),
+            self.end_date_time.get(),
+            self.ticket_type.get(),
+            self.seat_number.get(),
+            self.price.get(),
+
+        )
+        if status:
+            msg.showinfo("Save", message)
+            self.reset_form()
+        else:
+            msg.showerror("Save Error", message)
+
+    def edit_click(self):
+        ticket_controller = TicketController()
+        status, message = ticket_controller.edit(
+            self.code.get(),
+            self.name.get(),
+            self.family.get(),
+            self.birth_date.get(),
+            self.origin.get(),
+            self.destination.get(),
+            self.start_date_time.get(),
+            self.end_date_time.get(),
+            self.ticket_type.get(),
+            self.seat_number.get(),
+
+
+        )
+        if status:
+            msg.showinfo("Edit", message)
+            self.reset_form()
+        else:
+            msg.showerror("Edit Error", message)
+
+    def delete_click(self):
+        ticket_controller = TicketController()
+        status, message = ticket_controller.delete(
+            self.code.get(),
+        )
+        if status:
+            msg.showinfo("Remove", message)
+            self.reset_form()
+        else:
+            msg.showerror("Remove Error", message)
+
+    def show_data_on_table(self, status, ticket_list):
+        if status:
+            for item in self.table.get_children():
+                self.table.delete(item)
+
+            for ticket in ticket_list:
+                self.table.insert(
+                    "",
+                    END
+
+                )
+
+
+    def reset_form(self):
+        self.code.set(0)
+        self.name.set("")
+        self.family.set("")
+        self.birth_date.set("")
+        self.origin.set("")
+        self.destination.set("")
+        self.start_date_time.set("")
+        self.end_date_time.set("")
+        self.ticket_type.set("")
+        self.seat_number.set("")
+        self.price.set(0)
+
+        ticket_controller = TicketController()
+        status, ticket_list = ticket_controller.find_all()
+        self.show_data_on_table(status, ticket_list)
+
+    def search_name_family(self, event):
+        ticket_controller = TicketController()
+        status, ticket_list = ticket_controller.find_name_family(self.search_name.get(), self.search_family.get())
+        self.show_data_on_table(status, ticket_list)
+
+    def select_ticket(self, event):
+        ticket = Ticket(* self.table.item(self.table.focus())["values"]) # noqa
+        self.code.set(ticket.code)
+        self.name.set(ticket.name)
+        self.family.set(ticket.family)
+        self.birth_date.set(ticket.birth_date)
+        self.origin.set(ticket.origin)
+        self.destination.set(ticket.destination)
+        self.start_date_time.set(ticket.start_date_time)
+        self.end_date_time.set(ticket.end_date_time)
+        self.ticket_type.set(ticket.ticket_type)
+        self.seat_number.set(ticket.seat_number)
+        self.price.set(ticket.price)
 

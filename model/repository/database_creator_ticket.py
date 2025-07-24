@@ -37,7 +37,7 @@ def create_database():
                        origin       text not null,
                        destination   text not null,
                        
-                      );
+                      )
                    """)
 
     connection.commit()
