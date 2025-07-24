@@ -2,6 +2,7 @@ from model.entity.user import User
 from model.repository.user_repository import UserRepository
 
 
+
 class UserController:
     def save(self, name, family, username, password, role, locked):
         try:

@@ -1,6 +1,5 @@
-from model.entity.ticket import Ticket
 from controller.ticket_controller import TicketController
-from test.user_test import message
+ticket_controller = TicketController()
 
 
 

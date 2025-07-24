@@ -20,8 +20,8 @@ def save_ticket():
         request.form["start_date_time"],
         request.form["end_date_time"],
         request.form["ticket_type"],
+        request.form["seat_number"],
         request.form["price"],
-        False
     )
     print(status, message)
     return render_template("ticket.html")
