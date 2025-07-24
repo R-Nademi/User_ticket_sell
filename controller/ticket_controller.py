@@ -10,7 +10,7 @@ from model.repository.ticket_repository import TicketRepository
 
 class TicketController:
     def save(self, name, family, birth_date,origin,destination,start_date_time,end_date_time,
-             ):
+           ticket_type,seat_number,price ):
         try:
             ticket = Ticket( name,
                              family,
@@ -18,9 +18,10 @@ class TicketController:
                              origin,
                              destination,
                              start_date_time,
-                             end_date_time
-                             )
-
+                             end_date_time,
+                             ticket_type,
+                             seat_number,
+                             price)
 
 
             ticket_repo = TicketRepository()

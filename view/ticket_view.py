@@ -132,9 +132,9 @@ class TicketView:
             self.destination.get(),
             self.start_date_time.get(),
             self.end_date_time.get(),
-
-
-
+            self.ticket_type.get(),
+            self.seat_number.get(),
+            self.price.get(),
 
         )
         if status:
@@ -197,7 +197,6 @@ class TicketView:
                 self.table.insert(
                     "",
                     END)
-
 
     def reset_form(self):
         self.code.set(0)
