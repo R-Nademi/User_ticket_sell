@@ -10,10 +10,10 @@ from model.repository.ticket_repository import TicketRepository
 
 class TicketController:
     def save(self, code,name, family, birth_date,origin,destination,start_date_time,end_date_time,ticket_type,
-             seat_number,price):
+             seat_number):
         try:
             ticket = Ticket( code,name, family, birth_date,origin,destination,start_date_time,end_date_time,
-                             ticket_type,seat_number,price)
+                             ticket_type,seat_number)
             ticket_repo = TicketRepository()
             ticket_repo.save(ticket)
             return True, f"Ticket saved {ticket}"

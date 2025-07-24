@@ -134,7 +134,7 @@ class TicketView:
             self.end_date_time.get(),
             self.ticket_type.get(),
             self.seat_number.get(),
-            self.price.get(),
+
 
         )
         if status:
