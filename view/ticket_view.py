@@ -14,7 +14,7 @@ class TicketView:
         self.window.geometry("1260x400")
 
        # تعریف متغیرهای فرم
-        self.code = StringVar()
+        self.code = integer_codes()
         self.name = StringVar()
         self.family = StringVar()
         self.birth_date = StringVar()
@@ -103,9 +103,12 @@ class TicketView:
         self.table.column("seat_number", width=80)
         self.table.column("price", width=80)
 
-        # جایگذاری جدول در سمت راست
+
+        self.table.tag_configure("Ok", background="black")
+        self.table.tag_configure("locked", background="pink")
+        self.table.bind("<ButtonRelease>",self.select_ticket)
         self.table.place(x=320, y=20, height=350)
-        self.table.bind("<<TreeviewSelect>>")
+
 
         # دکمه‌ها پایین فرم
         Button(self.window, text="Save", width=34, command=self.save_click).place(x=20, y=280)
@@ -196,9 +199,12 @@ class TicketView:
             for ticket in ticket_list:
                 self.table.insert(
                     "",
-                    END)
+                    END,
+                    values = ticket,
+                    tags = "Locked" if user[6] else "OK",
+                )
 
-    def reset_form(self):
+def reset_form(self):
         self.code.set(0)
         self.name.set("")
         self.family.set("")
@@ -221,7 +227,7 @@ class TicketView:
         self.show_data_on_table(status, ticket_list)
 
     def select_ticket(self, event):
-        ticket = Ticket(* self.table.item(self.table.focus())["values"]) # noqa
+        ticket = Ticket(* self.table.item(self.table.focus())["values"])
         self.code.set(ticket.code)
         self.name.set(ticket.name)
         self.family.set(ticket.family)
