@@ -91,8 +91,10 @@ class User:
         self._locked = value
 
 
-
-
-
     def __repr__(self):
-        return f"{self.__dict__}"
+        return  f"{self.__dict__}"(tuple(self.__dict__))
+
+
+
+
+
