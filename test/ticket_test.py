@@ -3,7 +3,6 @@ ticket_controller = TicketController()
 
 
 
-ticket_controller = TicketController()
 
 
 status,message = ticket_controller.save(1, "Ali", "AliPour",
@@ -12,9 +11,4 @@ status,message = ticket_controller.save(1, "Ali", "AliPour",
                 "Airline","A21","30$")
 
 
-print(message)
-
-
-def __repr__(self):
-    return f"{self.__dict__}"
 
