@@ -65,11 +65,11 @@ def ticket_type_validator(ticket_type):
 
 
 def seat_number_validator(seat_number):
-    if not (type(seat_number) == str and re.match(r"^[a-zA-Z\s]{3,30}$",seat_number)):
+    if not (type(seat_number) == str and re.match(r"^[a-zA-9\s]{3,30}$",seat_number)):
         raise ValueError("Invalid seat_number !!!")
 
 
 
 def price_validator(price):
-    if not (type(price) == str and re.match(r"^[a-zA-Z\s]{3,30}$", price)):
+    if not (type(price) == str and re.match(r"^[a-zA-9\s]{3,30}$", price)):
         raise ValueError("Invalid price !!!")
